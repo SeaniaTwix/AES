@@ -1,6 +1,6 @@
 #include "AES.h"
 
-AES::AES(int keyLen, int blockSize = -1)
+AES::AES(int keyLen, int blockSize)
 {
   this->Nb = 4;
   switch (keyLen)
