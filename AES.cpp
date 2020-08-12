@@ -1,6 +1,6 @@
 #include "AES.h"
 
-AES::AES(int keyLen)
+AES::AES(int keyLen, int blockSize = -1)
 {
   this->Nb = 4;
   switch (keyLen)
@@ -21,7 +21,11 @@ AES::AES(int keyLen)
     throw "Incorrect key length";
   }
 
-  blockBytesLen = 4 * this->Nb * sizeof(unsigned char);
+  if (blockSize > 0) {
+      blockBytesLen = static_cast<unsigned int>(blockSize);
+  } else {
+      blockBytesLen = 4 * this->Nb * sizeof(unsigned char);
+  }
 }
 
 unsigned char * AES::EncryptECB(unsigned char in[], unsigned int inLen, unsigned  char key[], unsigned int &outLen)
